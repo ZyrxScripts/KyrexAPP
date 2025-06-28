@@ -4,89 +4,233 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyrex - The All-in-One Discord Bot</title>
-    
+   
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+   
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+   
     <!-- Custom Styles -->
     <style>
+        /* Base Styling */
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(-45deg, #0a0a0a, #111827, #0a0a0a, #1f2937);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background-color: #050505;
+            color: #E5E7EB;
+            overflow-x: hidden;
+            scrollbar-width: none; /* For Firefox */
+        }
+        
+        /* Enhanced Scrollbar - Fatter and Blurred */
+        ::-webkit-scrollbar {
+            width: 18px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 12px;
+            margin: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.8), rgba(79, 70, 229, 0.6));
+            border-radius: 12px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+            filter: blur(0.5px);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 1), rgba(79, 70, 229, 0.8));
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+            filter: blur(0px);
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Dynamic Background Overlay */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.15), transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1), transparent 40%),
+                        radial-gradient(circle at 80% 90%, rgba(99, 102, 241, 0.12), transparent 40%);
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Header */
+        .glass-header {
+            background-color: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .text-glow {
-            text-shadow: 0 0 10px rgba(99, 102, 241, 0.6), 0 0 22px rgba(99, 102, 241, 0.4);
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 40px rgba(99, 102, 241, 0.4);
         }
-        .card-bg {
-            background-color: rgba(17, 17, 17, 0.5); /* Slightly transparent */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid #222222;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Enhanced Glassmorphism Card Style with Blue Shadow */
+        .card-glass {
+            background-color: rgba(25, 25, 25, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
-        .card-bg:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+        .card-glass:hover {
+            transform: translateY(-16px) scale(1.02);
+            background-color: rgba(30, 30, 35, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 
+                0 35px 60px -12px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(99, 102, 241, 0.3),
+                0 0 80px rgba(139, 92, 246, 0.2),
+                0 0 120px rgba(79, 70, 229, 0.1);
         }
-        .btn {
+
+        /* Enhanced Glassy Button Styles */
+        .glass-button-container {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-button-container:hover {
+            transform: translateY(-4px);
+        }
+        .glass-button {
+            cursor: pointer;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-button-container:hover .glass-button {
+            box-shadow: 
+                0 0 30px rgba(99, 102, 241, 0.5),
+                0 0 60px rgba(139, 92, 246, 0.3),
+                0 0 90px rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        .blob {
+            position: absolute;
+            width: 120px;
+            height: 120%;
+            filter: blur(20px);
+            top: -10%;
+            left: -30px;
+            background: radial-gradient(circle, #8b5cf6, #6366f1 50%, #312e81 80%);
+            z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0.7;
+        }
+        .glass-button:hover .blob {
+            transform: scale(2.5) translateX(40px) rotate(60deg);
+            filter: blur(25px);
+        }
+        .inner-content {
+            display: block;
+            padding: 12px 28px;
+            border-radius: 16px;
+            color: #fff;
+            z-index: 2;
+            position: relative;
+            background-color: rgba(15, 17, 17, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
-        .btn-primary {
-            background-color: #4f46e5;
+       
+        /* Enhanced Gradient Text for Stats */
+        .gradient-text {
+            background: linear-gradient(45deg, #a5b4fc, #8b5cf6, #4f46e5);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
         }
-        .btn-primary:hover {
-            background-color: #4338ca;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
-         .btn-secondary {
-            background-color: #3730a3;
+
+        /* Enhanced Fade-in Animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .btn-secondary:hover {
-            background-color: #312e81;
-             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(49, 46, 129, 0.3);
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .btn-disabled {
-            background-color: #374151;
-            cursor: not-allowed;
+
+        /* Playful Icon Animations */
+        .card-glass .h-12 {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .card-glass:hover .h-12 {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Smooth page transitions */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced text animations */
+        .card-glass h3 {
+            transition: color 0.3s ease;
+        }
+        .card-glass:hover h3 {
+            color: #a5b4fc;
         }
     </style>
 </head>
-<body class="text-gray-200 antialiased">
+<body class="antialiased">
+
+    <div class="background-overlay" id="bg-overlay"></div>
 
     <!-- Header -->
-    <header class="py-6 px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 glass-header">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="#" class="flex items-center space-x-3">
-                <img src="https://media.discordapp.net/attachments/1198368460279910440/1388448049180708864/KyrexLogo.jpg?ex=68610483&is=685fb303&hm=a2e5ddc33b5354d6e6210475d42fa0e3ea5f89cb56c611a836b413c36fe91a42&=&format=webp&width=832&height=832" 
-                     alt="Kyrex Logo" 
+                <img src="https://media.discordapp.net/attachments/1198368460279910440/1388448049180708864/KyrexLogo.jpg?ex=68610483&is=685fb303&hm=a2e5ddc33b5354d6e6210475d42fa0e3ea5f89cb56c611a836b413c36fe91a42&=&format=webp&width=832&height=832"
+                     alt="Kyrex Logo"
                      class="h-10 w-10 rounded-full"
                      onerror="this.onerror=null;this.src='https://placehold.co/100x100/0a0a0a/ffffff?text=K'">
                 <span class="text-2xl font-bold text-white">Kyrex</span>
             </a>
-            <a href="https://discord.com/oauth2/authorize?client_id=1387843599521026058&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary text-white font-semibold py-2 px-6 rounded-lg">Invite Bot</a>
+             <a href="https://discord.com/oauth2/authorize?client_id=1387843599521026058&permissions=8&integration_type=0&scope=bot+applications.commands" class="glass-button-container">
+                <button class="glass-button text-sm" style="font-size: 1rem;">
+                    <div class="blob"></div>
+                    <span class="inner-content" style="padding: 0.6em 1.2em;">Invite Bot</span>
+                </button>
+            </a>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="text-center py-20 px-4">
+        <section class="text-center py-24 sm:py-32 px-4 relative">
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
                     The Only <span class="text-indigo-400 text-glow">Discord Bot</span> You'll Ever Need.
@@ -95,12 +239,37 @@
                     Kyrex packs powerful moderation, a fun global economy, server automation, and much more into one easy-to-use bot. Elevate your server today.
                 </p>
                 <div class="mt-8 flex justify-center items-center space-x-4">
-                    <a href="https://discord.com/oauth2/authorize?client_id=1387843599521026058&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg">
-                        Invite Kyrex to Your Server
+                    <a href="https://discord.com/oauth2/authorize?client_id=1387843599521026058&permissions=8&integration_type=0&scope=bot+applications.commands" class="glass-button-container">
+                        <button class="glass-button">
+                           <div class="blob"></div>
+                           <span class="inner-content">Invite Kyrex</span>
+                        </button>
                     </a>
-                    <a href="#" class="btn btn-disabled text-white font-bold py-3 px-8 rounded-lg text-lg">
-                        In-Dev
+                    <a href="#" class="glass-button-container disabled">
+                         <button class="glass-button button-disabled">
+                           <span class="inner-content">In-Dev</span>
+                        </button>
                     </a>
+                </div>
+            </div>
+        </section>
+
+         <!-- Stats Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="fade-in-section">
+                        <h3 class="text-4xl font-extrabold gradient-text stat-number" data-target="1500">0+</h3>
+                        <p class="mt-2 text-lg text-gray-400">Servers</p>
+                    </div>
+                    <div class="fade-in-section">
+                        <h3 class="text-4xl font-extrabold gradient-text stat-number" data-target="250000">0+</h3>
+                        <p class="mt-2 text-lg text-gray-400">Users</p>
+                    </div>
+                    <div class="fade-in-section">
+                        <h3 class="text-4xl font-extrabold gradient-text stat-number" data-target="50">0+</h3>
+                        <p class="mt-2 text-lg text-gray-400">Commands</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -109,15 +278,15 @@
         <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center">
-                    <h2 class="text-3xl font-extrabold text-white">Feature Packed</h2>
-                    <p class="mt-4 text-lg text-gray-400">Everything you need to manage and grow your community.</p>
+                    <h2 class="text-3xl font-extrabold text-white fade-in-section">Feature Packed</h2>
+                    <p class="mt-4 text-lg text-gray-400 fade-in-section">Everything you need to manage and grow your community.</p>
                 </div>
-                
+               
                 <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    
+                   
                     <!-- Moderation Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Advanced Moderation</h3>
@@ -125,8 +294,8 @@
                     </div>
 
                     <!-- Economy Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Global Economy</h3>
@@ -134,35 +303,35 @@
                     </div>
 
                     <!-- Automation Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Server Automation</h3>
                         <p class="mt-2 text-base text-gray-400">Automate your server with welcome/goodbye messages, message logging, and customizable reaction roles to let users self-assign roles.</p>
                     </div>
-                    
+                   
                      <!-- Fun Commands Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Fun & Games</h3>
-                        <p class="mt-2 text-base text-gray-400">Keep your community entertained with commands like /meme, /8ball</p>
+                        <p class="mt-2 text-base text-gray-400">Keep your community entertained with commands like /meme and /8ball.</p>
                     </div>
-                    
+                   
                     <!-- Leveling Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">XP & Leveling System</h3>
                         <p class="mt-2 text-base text-gray-400">Reward active members! Users gain XP for chatting, unlocking levels and earning roles automatically. Check your rank and climb the leaderboard.</p>
                     </div>
-                    
+                   
                     <!-- Utility Card -->
-                    <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-500 text-white">
+                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Powerful Utilities</h3>
@@ -184,5 +353,76 @@
         </div>
     </footer>
 
+    <!-- JavaScript at the end of the body -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Enhanced Background Scroll Effect ---
+            const overlay = document.getElementById('bg-overlay');
+            if (overlay) {
+                window.addEventListener('scroll', () => {
+                    const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+                    overlay.style.opacity = Math.min(scrollPercent * 1.8, 1);
+                });
+            }
+
+            // --- Enhanced Fade-in on Scroll Animation ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, index * 100); // Staggered animation
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+           
+            // --- Enhanced Animated Number Counter ---
+            const stats = document.querySelectorAll('.stat-number');
+            const statsObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = parseInt(target.getAttribute('data-target'));
+                        let currentValue = 0;
+                        const duration = 2500;
+                        const increment = finalValue / (duration / 25);
+
+                        const counter = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= finalValue) {
+                                target.textContent = finalValue.toLocaleString() + '+';
+                                clearInterval(counter);
+                            } else {
+                                target.textContent = Math.ceil(currentValue).toLocaleString() + '+';
+                            }
+                        }, 25);
+                        statsObserver.unobserve(target);
+                    }
+                });
+            }, { threshold: 0.8 });
+           
+            stats.forEach(stat => {
+                statsObserver.observe(stat);
+            });
+
+            // --- Add some playful interactions ---
+            const cards = document.querySelectorAll('.card-glass');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = `translateY(-16px) scale(1.02) rotate(${Math.random() * 2 - 1}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
