@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyrex - The All-in-One Discord Bot</title>
-   
-    <!-- Tailwind CSS -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-   
-    <!-- Google Fonts: Inter -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-   
-    <!-- Custom Styles -->
+    
     <style>
         /* Base Styling */
         body {
@@ -211,7 +210,7 @@
             -webkit-backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
-       
+        
         /* Enhanced Gradient Text for Stats */
         .gradient-text {
             background: linear-gradient(45deg, #a5b4fc, #8b5cf6, #4f46e5);
@@ -268,7 +267,6 @@
 
     <div class="background-overlay" id="bg-overlay"></div>
 
-    <!-- Header -->
     <header class="sticky top-0 z-50 py-4 px-4 sm:px-6 lg:px-8 glass-header">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="#" class="flex items-center space-x-3">
@@ -287,9 +285,7 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <section class="text-center py-24 sm:py-32 px-4 relative">
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
@@ -320,7 +316,6 @@
             </div>
         </section>
 
-         <!-- Stats Section -->
         <section class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-5xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -340,53 +335,47 @@
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center">
                     <h2 class="text-3xl font-extrabold text-white fade-in-section">Feature Packed</h2>
                     <p class="mt-4 text-lg text-gray-400 fade-in-section">Everything you need to manage and grow your community.</p>
                 </div>
-               
+                
                 <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                   
-                    <!-- Moderation Card -->
+                    
                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Advanced Moderation</h3>
                         <p class="mt-2 text-base text-gray-400">Keep your server safe with a full suite of commands like ban, kick, timeout, purge, and an automated anti-link system.</p>
                     </div>
 
-                    <!-- Economy Card -->
                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Global Economy</h3>
                         <p class="mt-2 text-base text-gray-400">Engage your members with a fun global economy. Earn daily rewards, deposit, withdraw, and test your luck with blackjack and the jackpot!</p>
                     </div>
 
-                    <!-- Automation Card -->
                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Server Automation</h3>
                         <p class="mt-2 text-base text-gray-400">Automate your server with welcome/goodbye messages, message logging, and customizable reaction roles to let users self-assign roles.</p>
                     </div>
-                   
-                     <!-- Fun Commands Card -->
-                    <div class="card-glass p-8 rounded-2xl fade-in-section">
+                    
+                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Fun & Games</h3>
                         <p class="mt-2 text-base text-gray-400">Keep your community entertained with commands like /meme and /8ball.</p>
                     </div>
-                   
-                    <!-- Leveling Card -->
+                    
                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
@@ -394,11 +383,10 @@
                         <h3 class="mt-6 text-xl font-bold text-white">XP & Leveling System</h3>
                         <p class="mt-2 text-base text-gray-400">Reward active members! Users gain XP for chatting, unlocking levels and earning roles automatically. Check your rank and climb the leaderboard.</p>
                     </div>
-                   
-                    <!-- Utility Card -->
+                    
                     <div class="card-glass p-8 rounded-2xl fade-in-section">
                         <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-indigo-500 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                         </div>
                         <h3 class="mt-6 text-xl font-bold text-white">Powerful Utilities</h3>
                         <p class="mt-2 text-base text-gray-400">Get detailed information with /userinfo and /serverinfo commands. Track server growth with the /invites command.</p>
@@ -409,17 +397,26 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-transparent">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <p class="text-base text-gray-400">&copy; 2025 Kyrex Bot. All rights reserved.</p>
                  <p class="mt-2 text-sm text-gray-500">Made with ❤️ by Zyrx</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="https://github.com/ZyrxScripts" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                    <a href="https://discord.gg/qMBqbVrNps" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-discord fa-lg"></i>
+                    </a>
+                    <a href="https://www.roblox.com/users/1691139500/profile" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-gamepad fa-lg"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript at the end of the body -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Enhanced Background Scroll Effect ---
@@ -448,7 +445,7 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-           
+            
             // --- Enhanced Animated Number Counter ---
             const stats = document.querySelectorAll('.stat-number');
             const statsObserver = new IntersectionObserver((entries) => {
@@ -468,12 +465,12 @@
                             } else {
                                 target.textContent = Math.ceil(currentValue).toLocaleString() + '+';
                             }
-                        }, 25);
+                        }z, 25);
                         statsObserver.unobserve(target);
                     }
                 });
             }, { threshold: 0.8 });
-           
+            
             stats.forEach(stat => {
                 statsObserver.observe(stat);
             });
